@@ -24,16 +24,30 @@ public class MeshCutResult
 		float uv3X, float uv3Y
 	)
 	{
-		int vertexCount = vertices.Count;
-		vertices.Add(new Vector3(x1, y1, 0));
-		vertices.Add(new Vector3(x2, y2, 0));
-		vertices.Add(new Vector3(x3, y3, 0));
-		uv.Add(new Vector2(uv1X, uv1Y));
-		uv.Add(new Vector2(uv2X, uv2Y));
-		uv.Add(new Vector2(uv3X, uv3Y));
-		indices.Add(vertexCount + 0);
-		indices.Add(vertexCount + 1);
-		indices.Add(vertexCount + 2);
+		Vector3 v1 = new Vector3(x1, y1, 0);
+		Vector3 v2 = new Vector3(x2, y2, 0);
+		Vector3 v3 = new Vector3(x3, y3, 0);
+		int i1 = vertices.IndexOf(v1);
+		int i2 = vertices.IndexOf(v2);
+		int i3 = vertices.IndexOf(v3);
+		if (i1 == -1)
+		{
+			vertices.Add(new Vector3(x1, y1, 0));
+			uv.Add(new Vector2(uv1X, uv1Y));
+		}
+		if (i2 == -1)
+		{
+			vertices.Add(new Vector3(x2, y2, 0));
+			uv.Add(new Vector2(uv2X, uv2Y));
+		}
+		if (i3 == -1)
+		{
+			vertices.Add(new Vector3(x3, y3, 0));
+			uv.Add(new Vector2(uv3X, uv3Y));
+		}
+		indices.Add(vertices.IndexOf(v1));
+		indices.Add(vertices.IndexOf(v2));
+		indices.Add(vertices.IndexOf(v3));
 	}
 
 	public void AddRectangle(
@@ -47,20 +61,43 @@ public class MeshCutResult
 		float uv4_X, float uv4_Y
 	)
 	{
-		int vertexCount = vertices.Count;
-		vertices.Add(new Vector3(x1, y1, 0));
-		vertices.Add(new Vector3(x2, y2, 0));
-		vertices.Add(new Vector3(x3, y3, 0));
-		vertices.Add(new Vector3(x4, y4, 0));
-		uv.Add(new Vector2(uv1_X, uv1_Y));
-		uv.Add(new Vector2(uv2_X, uv2_Y));
-		uv.Add(new Vector2(uv3_X, uv3_Y));
-		uv.Add(new Vector2(uv4_X, uv4_Y));
-		indices.Add(vertexCount + 0);
-		indices.Add(vertexCount + 1);
-		indices.Add(vertexCount + 2);
-		indices.Add(vertexCount + 0);
-		indices.Add(vertexCount + 2);
-		indices.Add(vertexCount + 3);
+		Vector3 v1 = new Vector3(x1, y1, 0);
+		Vector3 v2 = new Vector3(x2, y2, 0);
+		Vector3 v3 = new Vector3(x3, y3, 0);
+		Vector3 v4 = new Vector3(x4, y4, 0);
+		int i1 = vertices.IndexOf(v1);
+		int i2 = vertices.IndexOf(v2);
+		int i3 = vertices.IndexOf(v3);
+		int i4 = vertices.IndexOf(v4);
+		if (i1 == -1)
+		{
+			vertices.Add(new Vector3(x1, y1, 0));
+			uv.Add(new Vector2(uv1_X, uv1_Y));
+		}
+		if (i2 == -1)
+		{
+			vertices.Add(new Vector3(x2, y2, 0));
+			uv.Add(new Vector2(uv2_X, uv2_Y));
+		}
+		if (i3 == -1)
+		{
+			vertices.Add(new Vector3(x3, y3, 0));
+			uv.Add(new Vector2(uv3_X, uv3_Y));
+		}
+		if (i4 == -1)
+		{
+			vertices.Add(new Vector3(x4, y4, 0));
+			uv.Add(new Vector2(uv4_X, uv4_Y));
+		}
+		i1 = vertices.IndexOf(v1);
+		i2 = vertices.IndexOf(v2);
+		i3 = vertices.IndexOf(v3);
+		i4 = vertices.IndexOf(v4);
+		indices.Add(i1);
+		indices.Add(i2);
+		indices.Add(i3);
+		indices.Add(i1);
+		indices.Add(i3);
+		indices.Add(i4);
 	}
 }

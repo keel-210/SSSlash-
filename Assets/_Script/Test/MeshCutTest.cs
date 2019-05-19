@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MeshCutTest : MonoBehaviour
@@ -8,6 +9,8 @@ public class MeshCutTest : MonoBehaviour
 
 	void Start()
 	{
-		MM.Cut(mesh, mesh.GetComponent<MeshFilter>(), p0, p1);
+		List<MeshCollider> m = new List<MeshCollider> { mesh };
+		List<MeshFilter> f = new List<MeshFilter> { mesh.GetComponent<MeshFilter>() };
+		MM.CutAll(m, f, p0, p1);
 	}
 }

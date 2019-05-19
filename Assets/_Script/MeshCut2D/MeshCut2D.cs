@@ -5,7 +5,6 @@ public class MeshCut2D
 {
     public static void Cut(
         IList<Vector3> vertices,
-        IList<Color32> colors,
         IList<Vector2> uv,
         IList<int> indices,
         int indexCount,
