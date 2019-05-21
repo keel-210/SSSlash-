@@ -120,7 +120,7 @@ public class MeshCut2D
         uvY = uv3_Y + (uv4_Y - uv3_Y) * c;
     }
 
-    private static bool IsClockWise(
+    public static bool IsClockWise(
         float x1, float y1,
         float x2, float y2,
         float x3, float y3)

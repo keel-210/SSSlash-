@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - BackGround
+  - CanCutObject
   layers:
   - Default
   - TransparentFX
@@ -13,14 +15,14 @@ TagManager:
   - UI
   - 
   - 
+  - Player
   - 
   - 
   - 
   - 
   - 
   - 
-  - 
-  - 
+  - Enemy
   - 
   - 
   - 
@@ -38,6 +40,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Player
+    uniqueID: 2582918507
+    locked: 0
+  - name: Enemy
+    uniqueID: 4048015067
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: ForeGround
+    uniqueID: 620704947
+    locked: 0
+  - name: BackGround
+    uniqueID: 2297484333
     locked: 0

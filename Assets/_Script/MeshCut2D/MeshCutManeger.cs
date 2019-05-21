@@ -4,9 +4,35 @@ using UnityEngine;
 
 public class MeshCutManeger : MonoBehaviour
 {
+    [SerializeField] Transform player;
+    [SerializeField] float SlideLength;
+    [SerializeField] string CanCutObjectTag;
     public MeshCut2D cutter = new MeshCut2D();
     MeshCutResult a = new MeshCutResult(), b = new MeshCutResult();
     List<List<CutRecord>> CutHistory = new List<List<CutRecord>>();
+    public void Slash(Vector2 p0, Vector2 p1)
+    {
+        var objs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
+        List<MeshCollider> cols = objs.Select(x => x.GetComponent<MeshCollider>()).ToList();
+        List<MeshFilter> filters = objs.Select(x => x.GetComponent<MeshFilter>()).ToList();
+        CutAll(cols, filters, p0, p1);
+    }
+    public void Slide(Vector3 PlayerPos, IList<CutRecord> rec, Vector2 p0, Vector2 p1)
+    {
+        GameObject OneSide = new GameObject();
+        GameObject OtherSide = new GameObject();
+        foreach (CutRecord r in rec)
+        {
+            r.CutObj0.transform.parent = OneSide.transform;
+            r.CutObj1.transform.parent = OtherSide.transform;
+        }
+        //True is Oneside False is otherside is playerside
+        Vector3 dir = new Vector3(p0.x - p1.x, p0.y - p1.y, 0).normalized;
+        if (MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y))
+            OtherSide.transform.position += dir * SlideLength;
+        else
+            OneSide.transform.position += dir * SlideLength;
+    }
     public IList<CutRecord> CutAll(IList<MeshCollider> colliders, IList<MeshFilter> filters, Vector2 p0, Vector2 p1)
     {
         List<CutRecord> templist = new List<CutRecord>();
@@ -16,36 +42,64 @@ public class MeshCutManeger : MonoBehaviour
             templist.Add(r);
         }
         CutHistory.Add(templist);
+        Slide(player.position, templist, p0, p1);
         return templist;
     }
-    public CutRecord Cut(MeshCollider col, MeshFilter filter, Vector2 p0, Vector2 p1)
+    CutRecord Cut(MeshCollider col, MeshFilter filter, Vector2 p0, Vector2 p1)
+    {
+        Mesh mesh = DuplicateMesh(col.sharedMesh);
+        Vector3 PosOffset = col.transform.position;
+        Vector3[] slidedVertices = mesh.vertices.Select(v => v + PosOffset).ToArray();
+        p0 += new Vector2(PosOffset.x / col.transform.lossyScale.x, PosOffset.y / col.transform.lossyScale.y);
+        p1 += new Vector2(PosOffset.x / col.transform.lossyScale.x, PosOffset.y / col.transform.lossyScale.y);
+        MeshCut2D.Cut(slidedVertices, mesh.uv, mesh.triangles, mesh.triangles.Count(), p0.x, p0.y, p1.x, p1.y, a, b);
+        a.vertices = a.vertices.Select(v => v - PosOffset).ToList();
+        b.vertices = b.vertices.Select(v => v - PosOffset).ToList();
+        var obj1 = DuplicateMeshGameObject(col.gameObject, b, col.transform, col.GetComponent<MeshRenderer>().material);
+        CutRecord rec = SaveCutRecord(col, obj1, filter, p0, p1);
+        ApplyPolygonColloderAndMeshFilter(col, filter, a);
+        return rec;
+    }
+    public void Return()
+    {
+        if (CutHistory.Count() > 0)
+        {
+            foreach (CutRecord r in CutHistory[CutHistory.Count - 1])
+            {
+                Vector3 dir = new Vector3(r.p0.x - r.p1.x, r.p0.y - r.p1.y, 0).normalized;
+                if (MeshCut2D.IsClockWise(r.p0.x, r.p0.y, r.p1.x, r.p1.y, player.position.x, player.position.y))
+                {
+                    if (r.CutObj1)
+                        Destroy(r.CutObj1);
+                    r.CutObj0.GetComponent<MeshCollider>().sharedMesh = r.mesh;
+                    r.CutObj0.GetComponent<MeshFilter>().mesh = r.mesh;
+                    //ApplyTransform(r.CutObj0.transform, r.pos, r.rot, r.scale);
+                }
+                else
+                {
+                    if (r.CutObj0)
+                        Destroy(r.CutObj0);
+                    r.CutObj1.GetComponent<MeshCollider>().sharedMesh = r.mesh;
+                    r.CutObj1.GetComponent<MeshFilter>().mesh = r.mesh;
+                    //ApplyTransform(r.CutObj1.transform, r.pos, r.rot, r.scale);
+                }
+            }
+            CutHistory.RemoveAt(CutHistory.Count - 1);
+        }
+    }
+    CutRecord SaveCutRecord(MeshCollider col, GameObject Obj1, MeshFilter filter, Vector2 p0, Vector2 p1)
     {
         CutRecord rec = new CutRecord();
         rec.mesh = col.sharedMesh;
         rec.CutObj0 = col.gameObject;
         rec.tra = col.transform;
-        rec.collider = col;
-        rec.filter = filter;
-        Mesh mesh = DuplicateMesh(col.sharedMesh);
-        Vector3[] slidedVertices = mesh.vertices.Select(v => v + col.transform.position).ToArray();
-        MeshCut2D.Cut(slidedVertices, mesh.uv, mesh.triangles, mesh.triangles.Count(), p0.x, p0.y, p1.x, p1.y, a, b);
-        a.vertices = a.vertices.Select(v => v - col.transform.position).ToList();
-        b.vertices = b.vertices.Select(v => v - col.transform.position).ToList();
-        ApplyPolygonColloderAndMeshFilter(col, filter, a);
-        rec.CutObj1 = DuplicateMeshGameObject(col.gameObject, b, col.transform, col.GetComponent<MeshRenderer>().material);
+        rec.pos = col.transform.position;
+        rec.rot = col.transform.rotation;
+        rec.scale = col.transform.localScale;
+        rec.p0 = p0;
+        rec.p1 = p1;
+        rec.CutObj1 = Obj1;
         return rec;
-    }
-    public void Return()
-    {
-        foreach (CutRecord r in CutHistory[CutHistory.Count - 1])
-        {
-            if (r.CutObj1)
-                Destroy(r.CutObj1);
-            r.collider.sharedMesh = r.mesh;
-            r.filter.mesh = r.mesh;
-            ApplyTransform(r.CutObj0.transform, r.tra);
-        }
-        CutHistory.RemoveAt(CutHistory.Count - 1);
     }
     GameObject DuplicateMeshGameObject(GameObject original, MeshCutResult res, Transform tra, Material mat)
     {
@@ -54,15 +108,15 @@ public class MeshCutManeger : MonoBehaviour
         MeshRenderer r = obj.GetComponent<MeshRenderer>();
         MeshCollider c = obj.GetComponent<MeshCollider>();
         ApplyPolygonColloderAndMeshFilter(c, f, res);
-        ApplyTransform(obj.transform, tra);
+        ApplyTransform(obj.transform, tra.position, tra.rotation, tra.localScale);
         r.material = mat;
         return obj;
     }
-    void ApplyTransform(Transform obj, Transform tra)
+    void ApplyTransform(Transform obj, Vector3 pos, Quaternion rot, Vector3 scale)
     {
-        obj.position = tra.position;
-        obj.rotation = tra.rotation;
-        obj.localScale = tra.localScale;
+        obj.position = pos;
+        obj.rotation = rot;
+        obj.localScale = scale;
     }
     Mesh DuplicateMesh(Mesh mesh)
     {
