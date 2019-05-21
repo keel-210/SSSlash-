@@ -2,18 +2,30 @@ using UnityEngine;
 
 public class Slasher : MonoBehaviour
 {
-    TouchInputObserver TouchObserver;
+    [SerializeField] float MinimamActivateLength;
     MeshCutManeger cutter;
+    Vector3 StartPos;
+    TouchInfo info;
+    bool CanSlash = false;
     void Start()
     {
-        TouchObserver = FindObjectOfType<TouchInputObserver>();
         cutter = FindObjectOfType<MeshCutManeger>();
     }
     void Update()
     {
-    }
-    void PreSlash()
-    {
-
+        info = AppUtil.GetTouch();
+        if (info == TouchInfo.Began)
+            StartPos = AppUtil.GetTouchPosition();
+        if (info == TouchInfo.Moved && Vector3.Distance(StartPos, AppUtil.GetTouchPosition()) > MinimamActivateLength)
+            CanSlash = true;
+        if (info == TouchInfo.Ended)
+        {
+            if (CanSlash)
+            {
+                Debug.Log("StartPos : " + StartPos + " EndPos" + AppUtil.GetTouchPosition());
+                // cutter.Slash(StartPos, AppUtil.GetTouchPosition());
+            }
+            CanSlash = false;
+        }
     }
 }
