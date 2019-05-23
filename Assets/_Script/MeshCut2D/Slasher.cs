@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Slasher : MonoBehaviour
@@ -23,18 +24,23 @@ public class Slasher : MonoBehaviour
             Vector3[] slashLine = { Camera.main.ScreenToWorldPoint(StartPos), Camera.main.ScreenToWorldPoint(AppUtil.GetTouchPosition()) };
             slashLine[0] = new Vector3(slashLine[0].x, slashLine[0].y, 0);
             slashLine[1] = new Vector3(slashLine[1].x, slashLine[1].y, 0);
+            Vector3 LineDirection = (slashLine[0] - slashLine[1]).normalized;
+            slashLine[1] = slashLine[0] + LineDirection * 30;
+            slashLine[0] += -LineDirection * 30;
             line.SetPositions(slashLine);
         }
         if (info == TouchInfo.Ended)
         {
             if (CanSlash)
-            {
-                Vector3 s = Camera.main.ScreenToWorldPoint(StartPos);
-                Vector3 e = Camera.main.ScreenToWorldPoint(AppUtil.GetTouchPosition());
-                Debug.Log("StartPos : " + s + " EndPos" + e);
-                cutter.Slash(new Vector3(s.x, s.y, 0), new Vector3(e.x, e.y, 0));
-            }
+                StartCoroutine(SlashCoroutine());
             CanSlash = false;
         }
+    }
+    IEnumerator SlashCoroutine()
+    {
+        Vector3 s = Camera.main.ScreenToWorldPoint(StartPos);
+        Vector3 e = Camera.main.ScreenToWorldPoint(AppUtil.GetTouchPosition());
+        yield return new WaitForEndOfFrame();
+        cutter.Slash(new Vector3(s.x, s.y, 0), new Vector3(e.x, e.y, 0));
     }
 }

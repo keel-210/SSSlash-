@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -6,16 +7,14 @@ public class MeshCutTest : MonoBehaviour
 {
     [SerializeField] MeshCutManeger MM;
     [SerializeField] Vector2 p0, p1;
-
-    void Start()
+    void Update()
     {
-        var objs = GameObject.FindGameObjectsWithTag("CanCutObject");
-        List<MeshCollider> mesh = objs.Select(x => x.GetComponent<MeshCollider>()).ToList();
-        List<MeshFilter> f = new List<MeshFilter>();
-        foreach (MeshCollider m in mesh)
-        {
-            f.Add(m.GetComponent<MeshFilter>());
-        }
-        MM.CutAll(mesh, f, p0, p1);
+        StartCoroutine(test());
+    }
+    IEnumerator test()
+    {
+        this.enabled = false;
+        yield return new WaitForEndOfFrame();
+        MM.Slash(p0, p1);
     }
 }

@@ -1,12 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] string s1;
+    [SerializeField] List<string> scenes;
     void Start()
     {
-
+        foreach (string s in scenes)
+        {
+            SceneManager.LoadScene(s);
+        }
     }
 }

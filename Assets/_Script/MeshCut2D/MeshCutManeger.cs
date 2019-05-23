@@ -30,9 +30,9 @@ public class MeshCutManeger : MonoBehaviour
         //True is Oneside False is otherside is playerside
         Vector3 dir = new Vector3(p0.x - p1.x, p0.y - p1.y, 0).normalized;
         if (MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y))
-            OneSide.transform.position += dir * SlideLength;
+            OneSide.transform.position += -dir * SlideLength;
         else
-            OtherSide.transform.position += dir * SlideLength;
+            OtherSide.transform.position += -dir * SlideLength;
     }
     public IList<CutRecord> CutAll(IList<MeshCollider> colliders, IList<MeshFilter> filters, Vector2 p0, Vector2 p1)
     {
@@ -75,6 +75,16 @@ public class MeshCutManeger : MonoBehaviour
                     Vector3 pos = r.CutObj1.transform.position;
                     Vector3 scale = r.CutObj1.transform.localScale;
                     Quaternion rot = r.CutObj1.transform.rotation;
+                    for (int i = 0; i < CutHistory.Count() - 1; i++)
+                    {
+                        foreach (CutRecord record in CutHistory[i])
+                        {
+                            if (record.CutObj0 == r.CutObj1)
+                                record.CutObj0 = r.CutObj0;
+                            if (record.CutObj1 == r.CutObj1)
+                                record.CutObj1 = r.CutObj0;
+                        }
+                    }
                     if (r.CutObj1)
                         Destroy(r.CutObj1);
                     r.CutObj0.GetComponent<MeshCollider>().sharedMesh = r.mesh;
@@ -86,6 +96,16 @@ public class MeshCutManeger : MonoBehaviour
                     Vector3 pos = r.CutObj0.transform.position;
                     Vector3 scale = r.CutObj0.transform.localScale;
                     Quaternion rot = r.CutObj0.transform.rotation;
+                    for (int i = 0; i < CutHistory.Count() - 1; i++)
+                    {
+                        foreach (CutRecord record in CutHistory[i])
+                        {
+                            if (record.CutObj0 == r.CutObj0)
+                                record.CutObj0 = r.CutObj1;
+                            if (record.CutObj1 == r.CutObj0)
+                                record.CutObj1 = r.CutObj1;
+                        }
+                    }
                     if (r.CutObj0)
                         Destroy(r.CutObj0);
                     r.CutObj1.GetComponent<MeshCollider>().sharedMesh = r.mesh;
