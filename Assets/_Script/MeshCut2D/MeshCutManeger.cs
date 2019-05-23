@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeshCutManeger : MonoBehaviour
 {
-    [SerializeField] Transform player;
+    [SerializeField] AccessTransform player;
     [SerializeField] float SlideLength;
     [SerializeField] string CanCutObjectTag;
     [SerializeField] GameObject CutParent;
@@ -13,7 +13,7 @@ public class MeshCutManeger : MonoBehaviour
     List<List<CutRecord>> CutHistory = new List<List<CutRecord>>();
     public void Slash(Vector2 p0, Vector2 p1)
     {
-        var objs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
+        var objs = GameObject.FindGameObjectsWithTag(CanCutObjectTag).Where(x => x.GetComponent<Renderer>().isVisible);
         List<MeshCollider> cols = objs.Select(x => x.GetComponent<MeshCollider>()).ToList();
         List<MeshFilter> filters = objs.Select(x => x.GetComponent<MeshFilter>()).ToList();
         CutAll(cols, filters, p0, p1);
@@ -43,7 +43,7 @@ public class MeshCutManeger : MonoBehaviour
             templist.Add(r);
         }
         CutHistory.Add(templist);
-        Slide(player.position, templist, p0, p1);
+        Slide(player.target.position, templist, p0, p1);
         return templist;
     }
     CutRecord Cut(MeshCollider col, MeshFilter filter, Vector2 p0, Vector2 p1)
@@ -70,7 +70,7 @@ public class MeshCutManeger : MonoBehaviour
             foreach (CutRecord r in CutHistory[CutHistory.Count - 1])
             {
                 Vector3 dir = new Vector3(r.p0.x - r.p1.x, r.p0.y - r.p1.y, 0).normalized;
-                if (MeshCut2D.IsClockWise(r.p0.x, r.p0.y, r.p1.x, r.p1.y, player.position.x, player.position.y))
+                if (MeshCut2D.IsClockWise(r.p0.x, r.p0.y, r.p1.x, r.p1.y, player.target.position.x, player.target.position.y))
                 {
                     Vector3 pos = r.CutObj1.transform.position;
                     Vector3 scale = r.CutObj1.transform.localScale;
