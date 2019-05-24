@@ -5,12 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    [SerializeField] List<string> scenes;
+    [SerializeField] string scene;
+    [SerializeField] List<string> Additivescenes;
     void Start()
     {
-        foreach (string s in scenes)
-        {
-            SceneManager.LoadScene(s);
-        }
+        if (!string.IsNullOrEmpty(scene))
+            SceneManager.LoadScene(scene, LoadSceneMode.Single);
+        foreach (string s in Additivescenes)
+            SceneManager.LoadScene(s, LoadSceneMode.Additive);
     }
 }

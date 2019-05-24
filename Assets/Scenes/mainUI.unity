@@ -208,7 +208,7 @@ PrefabInstance:
     - target: {fileID: 5383932619212580124, guid: a0bbc4388cf169a4cb1fc9c44ed8d020,
         type: 3}
       propertyPath: m_Name
-      value: Canvas
+      value: UI
       objectReference: {fileID: 0}
     - target: {fileID: 5383932619212580120, guid: a0bbc4388cf169a4cb1fc9c44ed8d020,
         type: 3}
@@ -320,16 +320,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1521787895}
-    - target: {fileID: 4510916806246574927, guid: a0bbc4388cf169a4cb1fc9c44ed8d020,
-        type: 3}
-      propertyPath: m_Name
-      value: JoyStick
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982309876938650396, guid: a0bbc4388cf169a4cb1fc9c44ed8d020,
-        type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a0bbc4388cf169a4cb1fc9c44ed8d020, type: 3}
 --- !u!1001 &7825915153823895885

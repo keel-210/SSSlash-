@@ -11,7 +11,8 @@ public class PlayerMover : MonoBehaviour
     public bool OnGround, HasJumped, HasDoubleJumped = true;
     void Update()
     {
-        Vector2 input = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        // Vector2 input = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
+        Vector2 input = JoyStick.target.Position;
         if (OnGround && !HasJumped && input.y > JumpThreshold)
         {
             velo = new Vector2(input.x * Speed, JumpPower);
