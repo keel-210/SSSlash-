@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalBehaviour : SingletonMonoBehaviour<GoalBehaviour>
+public class GoalBehaviour : SingletonGameObject<GoalBehaviour>
 {
     void Start()
     {

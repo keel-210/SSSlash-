@@ -51,12 +51,18 @@ public class MeshCutManeger : MonoBehaviour
         Mesh mesh = DuplicateMesh(col.sharedMesh);
         Vector3 PosOffset = col.transform.position;
         Vector3 ScaleOffset = col.transform.lossyScale;
-        Vector3[] slidedVertices = mesh.vertices.Select(v => new Vector3(v.x * ScaleOffset.x, v.y * ScaleOffset.y, v.z * ScaleOffset.z))
+        float RotZRadian = 2 * Mathf.PI * col.transform.rotation.eulerAngles.z / 360;
+        float sinZ = Mathf.Sin(RotZRadian), cosZ = Mathf.Cos(RotZRadian);
+        Vector3[] slidedVertices = mesh.vertices
+            .Select(v => new Vector3(v.x * ScaleOffset.x * cosZ - v.y * ScaleOffset.y * sinZ, v.x * ScaleOffset.x * sinZ + v.y * ScaleOffset.y * cosZ, v.z * ScaleOffset.z))
             .Select(v => v + PosOffset).ToArray();
         MeshCut2D.Cut(slidedVertices, mesh.uv, mesh.triangles, mesh.triangles.Count(), p0.x, p0.y, p1.x, p1.y, a, b);
+        float sinZR = Mathf.Sin(-RotZRadian), cosZR = Mathf.Cos(-RotZRadian);
         a.vertices = a.vertices.Select(v => v - PosOffset)
+            .Select(v => new Vector3(v.x * cosZR - v.y * sinZR, v.x * sinZR + v.y * cosZR, v.z))
             .Select(v => new Vector3(v.x / ScaleOffset.x, v.y / ScaleOffset.y, v.z / ScaleOffset.z)).ToList();
         b.vertices = b.vertices.Select(v => v - PosOffset)
+            .Select(v => new Vector3(v.x * cosZR - v.y * sinZR, v.x * sinZR + v.y * cosZR, v.z))
             .Select(v => new Vector3(v.x / ScaleOffset.x, v.y / ScaleOffset.y, v.z / ScaleOffset.z)).ToList();
         var obj1 = DuplicateMeshGameObject(col.gameObject, b, col.transform, col.GetComponent<MeshRenderer>().material);
         CutRecord rec = SaveCutRecord(col, obj1, filter, p0, p1);
