@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GoalBehaviour : SingletonGameObject<GoalBehaviour>
+public class DeathZone : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        other.GetComponent<IPlayer>()?.Clear();
+        other.GetComponent<IPlayer>()?.Death();
     }
 }
