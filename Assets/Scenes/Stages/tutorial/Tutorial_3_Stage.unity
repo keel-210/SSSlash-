@@ -147,11 +147,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75741756}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 11.971, y: 2.813, z: 0}
-  m_LocalScale: {x: 7.842, y: 6.6721563, z: 2}
+  m_LocalPosition: {x: 11.971, y: 0.571, z: 0}
+  m_LocalScale: {x: 7.842, y: 11.155846, z: 2}
   m_Children: []
   m_Father: {fileID: 1413753218}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &75741758
 MeshCollider:
@@ -212,54 +212,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 75741756}
   m_Mesh: {fileID: 10210, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &141831862
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 141831864}
-  - component: {fileID: 141831863}
-  m_Layer: 0
-  m_Name: SceneLoader
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &141831863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141831862}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a64212949b9497478214e934e0bf634, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scene: 
-  Additivescenes:
-  - main
-  - mainUI
-  - Tutorial_1_Stage
---- !u!4 &141831864
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141831862}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &404933884
 GameObject:
   m_ObjectHideFlags: 0
@@ -287,11 +239,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 404933884}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.04, y: -7.344, z: 0}
-  m_LocalScale: {x: 6.4944005, y: 5.687, z: 2}
+  m_LocalPosition: {x: -0.851, y: 0.376, z: 0}
+  m_LocalScale: {x: 18.874098, y: 2.145307, z: 2}
   m_Children: []
   m_Father: {fileID: 1413753218}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &404933886
 MeshCollider:
@@ -383,10 +335,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 723661569}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.559, y: -1.53, z: 0}
-  m_LocalScale: {x: 1, y: 2, z: 1}
+  m_LocalPosition: {x: 0.438, y: 0.6710401, z: 0}
+  m_LocalScale: {x: 0.059405446, y: 0.34679076, z: 0.5}
   m_Children: []
-  m_Father: {fileID: 1413753218}
+  m_Father: {fileID: 894514094}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &723661571
@@ -531,11 +483,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894514093}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.935, y: -5.4, z: 0}
-  m_LocalScale: {x: 7.5115905, y: 5.767166, z: 2}
-  m_Children: []
+  m_LocalPosition: {x: 0.103, y: -7.28, z: 0}
+  m_LocalScale: {x: 16.833473, y: 5.767166, z: 2}
+  m_Children:
+  - {fileID: 723661570}
   m_Father: {fileID: 1413753218}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &894514095
 MeshCollider:
@@ -627,7 +580,7 @@ Transform:
   m_LocalScale: {x: 7.052, y: 12.7584, z: 2}
   m_Children: []
   m_Father: {fileID: 1413753218}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &907433725
 MeshCollider:
@@ -738,7 +691,7 @@ PrefabInstance:
     - target: {fileID: 2360483549062709909, guid: 0ea6a20a340c0cd4295c357e69720fb8,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2360483549062709909, guid: 0ea6a20a340c0cd4295c357e69720fb8,
         type: 3}
@@ -799,7 +752,7 @@ Transform:
   m_LocalScale: {x: 20, y: 6.568, z: 2}
   m_Children: []
   m_Father: {fileID: 1413753218}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!64 &2014282523
 MeshCollider:

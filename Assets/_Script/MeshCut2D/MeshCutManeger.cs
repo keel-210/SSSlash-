@@ -91,6 +91,9 @@ public class MeshCutManeger : MonoBehaviour
                                 record.CutObj1 = r.CutObj0;
                         }
                     }
+                    GoalBehaviour g;
+                    if (g = r.CutObj1.GetComponentInChildren<GoalBehaviour>())
+                        g.transform.parent = r.CutObj0.transform;
                     if (r.CutObj1)
                         Destroy(r.CutObj1);
                     r.CutObj0.GetComponent<MeshCollider>().sharedMesh = r.mesh;
@@ -112,6 +115,9 @@ public class MeshCutManeger : MonoBehaviour
                                 record.CutObj1 = r.CutObj1;
                         }
                     }
+                    GoalBehaviour g;
+                    if (g = r.CutObj0.GetComponentInChildren<GoalBehaviour>())
+                        g.transform.parent = r.CutObj1.transform;
                     if (r.CutObj0)
                         Destroy(r.CutObj0);
                     r.CutObj1.GetComponent<MeshCollider>().sharedMesh = r.mesh;

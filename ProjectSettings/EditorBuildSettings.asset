@@ -9,15 +9,48 @@ EditorBuildSettings:
     path: 
     guid: 00000000000000000000000000000000
   - enabled: 1
+    path: Assets/Scenes/Title.unity
+    guid: b2574fc9a077fcb43956dbb768670bac
+  - enabled: 1
     path: Assets/Scenes/main.unity
     guid: fa19456150348a946968ae30aa39985c
   - enabled: 1
     path: Assets/Scenes/mainUI.unity
     guid: 33fe36b13367a1f438d3600fe8cefa13
   - enabled: 1
+    path: Assets/Scenes/ClearUI.unity
+    guid: 57fa7ab9e910ebe49b8044e2ba3b9d3d
+  - enabled: 1
+    path: Assets/Scenes/StageSelect.unity
+    guid: d01546109a5757a42b253d587e5c67d7
+  - enabled: 1
     path: Assets/Scenes/Stages/test/test.unity
     guid: 601306f4bdca71a478ad1069b7041aae
   - enabled: 1
     path: Assets/Scenes/Stages/test/test_stage.unity
     guid: 4a8c358745df5084da145d287825ff6f
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_1.unity
+    guid: 70bcd789edf523a4abc5bda3b0158856
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_1_Stage.unity
+    guid: cc4ff95b08a76f54284d191de4e2c457
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_2.unity
+    guid: 6ca88191634a24b4e9b28aefdd600fe4
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_2_Stage.unity
+    guid: 290dc0e52a32ac24b87e8d5fffcbf6e8
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_3.unity
+    guid: 589c68fbd22973a4eb19bf3db42260b4
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_3_Stage.unity
+    guid: b4320d047d5926e42886621b560fd77f
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_4.unity
+    guid: 13777da370b284144a45aa8ea5025940
+  - enabled: 1
+    path: Assets/Scenes/Stages/tutorial/Tutorial_4_Stage.unity
+    guid: c1ebd626607c3044591b36998648300a
   m_configObjects: {}

@@ -9,6 +9,18 @@ public class Restrict2DCamera : MonoBehaviour
     [SerializeField] AccessTransform Target;
     void Start()
     {
-        Vcam.Follow = Target.target;
+        if (Target.target)
+        {
+            Vcam.Follow = Target.target;
+            this.enabled = false;
+        }
+    }
+    void Update()
+    {
+        if (Target.target)
+        {
+            Vcam.Follow = Target.target;
+            this.enabled = false;
+        }
     }
 }

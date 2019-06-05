@@ -2,13 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-public class PlayerMover : MonoBehaviour
+public class PlayerMover : MonoBehaviour, IRecieveGravity
 {
     [SerializeField] AccessCircleJoyStick JoyStick;
-    [SerializeField] Rigidbody playerRigidbody;
+    public Rigidbody rb { get; set; }
+
     [SerializeField] float Speed, JumpPower, JumpThreshold;
     Vector2 velo;
     public bool OnGround, HasJumped, HasDoubleJumped = true;
+    void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
     void Update()
     {
         // Vector2 input = new Vector2(CrossPlatformInputManager.GetAxis("Horizontal"), CrossPlatformInputManager.GetAxis("Vertical"));
@@ -18,22 +23,22 @@ public class PlayerMover : MonoBehaviour
             velo = new Vector2(input.x * Speed, JumpPower);
             HasJumped = true;
         }
-        else if (!OnGround && HasJumped && !HasDoubleJumped && playerRigidbody.velocity.y <= 0 && input.y > JumpThreshold)
+        else if (!OnGround && HasJumped && !HasDoubleJumped && rb.velocity.y <= 0 && input.y > JumpThreshold)
         {
             velo = new Vector2(input.x * Speed, JumpPower);
         }
         else
         {
-            velo = new Vector2(input.x * Speed, playerRigidbody.velocity.y);
+            velo = new Vector2(input.x * Speed, rb.velocity.y);
         }
     }
     void FixedUpdate()
     {
-        playerRigidbody.velocity = velo;
+        rb.velocity = velo;
     }
     void OnCollisionEnter(Collision other)
     {
-        if (playerRigidbody.velocity.y <= 0)
+        if (rb.velocity.y <= 0)
         {
             OnGround = true;
             HasJumped = false;
