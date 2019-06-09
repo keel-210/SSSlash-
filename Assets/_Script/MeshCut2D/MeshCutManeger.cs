@@ -1,7 +1,7 @@
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-
 public class MeshCutManeger : MonoBehaviour
 {
     [SerializeField] AccessTransform player;
@@ -28,11 +28,16 @@ public class MeshCutManeger : MonoBehaviour
             r.CutObj1.transform.parent = OtherSide.transform;
         }
         //True is Oneside False is otherside is playerside
+        bool PlayerSide = MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y);
         Vector3 dir = new Vector3(p0.x - p1.x, p0.y - p1.y, 0).normalized;
-        if (MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y))
+        if (PlayerSide)
             OneSide.transform.position += -dir * SlideLength;
         else
             OtherSide.transform.position += -dir * SlideLength;
+        var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
+        System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Slide(p0, p1, PlayerSide, -dir * SlideLength));
+        var CutObjs = GameObject.FindGameObjectsWithTag("CanCutObject");
+        System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Slashed(p0, p1, PlayerSide, -dir * SlideLength));
     }
     public IList<CutRecord> CutAll(IList<MeshCollider> colliders, IList<MeshFilter> filters, Vector2 p0, Vector2 p1)
     {
@@ -74,58 +79,57 @@ public class MeshCutManeger : MonoBehaviour
         if (CutHistory.Count() > 0)
         {
             foreach (CutRecord r in CutHistory[CutHistory.Count - 1])
+                ReturnObj(r);
+            CutHistory.RemoveAt(CutHistory.Count - 1);
+            var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
+            System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Return());
+            var CutObjs = GameObject.FindGameObjectsWithTag("CanCutObject");
+            System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Return());
+        }
+    }
+    void ReturnObj(CutRecord r)
+    {
+        if (MeshCut2D.IsClockWise(r.p0.x, r.p0.y, r.p1.x, r.p1.y, player.target.position.x, player.target.position.y))
+        {
+            Vector3 pos = r.CutObj1.transform.position;
+            Vector3 scale = r.CutObj1.transform.localScale;
+            Quaternion rot = r.CutObj1.transform.rotation;
+            for (int i = 0; i < CutHistory.Count() - 1; i++)
             {
-                Vector3 dir = new Vector3(r.p0.x - r.p1.x, r.p0.y - r.p1.y, 0).normalized;
-                if (MeshCut2D.IsClockWise(r.p0.x, r.p0.y, r.p1.x, r.p1.y, player.target.position.x, player.target.position.y))
+                foreach (CutRecord record in CutHistory[i])
                 {
-                    Vector3 pos = r.CutObj1.transform.position;
-                    Vector3 scale = r.CutObj1.transform.localScale;
-                    Quaternion rot = r.CutObj1.transform.rotation;
-                    for (int i = 0; i < CutHistory.Count() - 1; i++)
-                    {
-                        foreach (CutRecord record in CutHistory[i])
-                        {
-                            if (record.CutObj0 == r.CutObj1)
-                                record.CutObj0 = r.CutObj0;
-                            if (record.CutObj1 == r.CutObj1)
-                                record.CutObj1 = r.CutObj0;
-                        }
-                    }
-                    GoalBehaviour g;
-                    if (g = r.CutObj1.GetComponentInChildren<GoalBehaviour>())
-                        g.transform.parent = r.CutObj0.transform;
-                    if (r.CutObj1)
-                        Destroy(r.CutObj1);
-                    r.CutObj0.GetComponent<MeshCollider>().sharedMesh = r.mesh;
-                    r.CutObj0.GetComponent<MeshFilter>().mesh = r.mesh;
-                    ApplyTransform(r.CutObj0.transform, pos, rot, scale);
-                }
-                else
-                {
-                    Vector3 pos = r.CutObj0.transform.position;
-                    Vector3 scale = r.CutObj0.transform.localScale;
-                    Quaternion rot = r.CutObj0.transform.rotation;
-                    for (int i = 0; i < CutHistory.Count() - 1; i++)
-                    {
-                        foreach (CutRecord record in CutHistory[i])
-                        {
-                            if (record.CutObj0 == r.CutObj0)
-                                record.CutObj0 = r.CutObj1;
-                            if (record.CutObj1 == r.CutObj0)
-                                record.CutObj1 = r.CutObj1;
-                        }
-                    }
-                    GoalBehaviour g;
-                    if (g = r.CutObj0.GetComponentInChildren<GoalBehaviour>())
-                        g.transform.parent = r.CutObj1.transform;
-                    if (r.CutObj0)
-                        Destroy(r.CutObj0);
-                    r.CutObj1.GetComponent<MeshCollider>().sharedMesh = r.mesh;
-                    r.CutObj1.GetComponent<MeshFilter>().mesh = r.mesh;
-                    ApplyTransform(r.CutObj1.transform, pos, rot, scale);
+                    if (record.CutObj0 == r.CutObj1)
+                        record.CutObj0 = r.CutObj0;
+                    if (record.CutObj1 == r.CutObj1)
+                        record.CutObj1 = r.CutObj0;
                 }
             }
-            CutHistory.RemoveAt(CutHistory.Count - 1);
+            if (r.CutObj1)
+                Destroy(r.CutObj1);
+            r.CutObj0.GetComponent<MeshCollider>().sharedMesh = r.mesh;
+            r.CutObj0.GetComponent<MeshFilter>().mesh = r.mesh;
+            ApplyTransform(r.CutObj0.transform, pos, rot, scale);
+        }
+        else
+        {
+            Vector3 pos = r.CutObj0.transform.position;
+            Vector3 scale = r.CutObj0.transform.localScale;
+            Quaternion rot = r.CutObj0.transform.rotation;
+            for (int i = 0; i < CutHistory.Count() - 1; i++)
+            {
+                foreach (CutRecord record in CutHistory[i])
+                {
+                    if (record.CutObj0 == r.CutObj0)
+                        record.CutObj0 = r.CutObj1;
+                    if (record.CutObj1 == r.CutObj0)
+                        record.CutObj1 = r.CutObj1;
+                }
+            }
+            if (r.CutObj0)
+                Destroy(r.CutObj0);
+            r.CutObj1.GetComponent<MeshCollider>().sharedMesh = r.mesh;
+            r.CutObj1.GetComponent<MeshFilter>().mesh = r.mesh;
+            ApplyTransform(r.CutObj1.transform, pos, rot, scale);
         }
     }
     CutRecord SaveCutRecord(MeshCollider col, GameObject Obj1, MeshFilter filter, Vector2 p0, Vector2 p1)

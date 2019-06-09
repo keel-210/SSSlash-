@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 881940324}
   - component: {fileID: 881940323}
   - component: {fileID: 881940326}
+  - component: {fileID: 881940327}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -289,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 881940322}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.29924202, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -315,17 +316,36 @@ MonoBehaviour:
   m_DefaultBlend:
     m_Style: 1
     m_Time: 2
+    m_CustomCurve:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
   m_CustomBlends: {fileID: 0}
   m_CameraCutEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: Cinemachine.CinemachineBrain+BrainEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
-    m_TypeName: Cinemachine.CinemachineBrain+VcamEvent, Assembly-CSharp, Version=0.0.0.0,
+    m_TypeName: Cinemachine.CinemachineBrain+VcamActivatedEvent, Cinemachine, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &881940327
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 881940322}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66502abbc76d1354e82d510ff325b7a1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Mat: {fileID: 2100000, guid: b069b9184733d1941b25d0b376a9fabc, type: 2}
 --- !u!1001 &5133134221387858427
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -392,6 +412,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5133134220422109002, guid: cc94bb54b37a6e24b922a9eb52e4d444,
+        type: 3}
+      propertyPath: m_Constraints
+      value: 120
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cc94bb54b37a6e24b922a9eb52e4d444, type: 3}

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - BackGround
   - CanCutObject
+  - SlideObject
+  - Ground
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -27,7 +30,7 @@ TagManager:
   - 
   - 
   - 
-  - 
+  - Hinge
   - 
   - 
   - 

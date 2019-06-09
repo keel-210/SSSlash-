@@ -9,10 +9,7 @@ public class GravityZone : MonoBehaviour
     void FixedUpdate()
     {
         foreach (Rigidbody r in rigidbodyList)
-        {
-            Debug.Log(r);
             r.AddForce(gravity, ForceMode.Acceleration);
-        }
     }
     void OnTriggerEnter(Collider other)
     {

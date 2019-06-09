@@ -24,13 +24,9 @@ public class PlayerMover : MonoBehaviour, IRecieveGravity
             HasJumped = true;
         }
         else if (!OnGround && HasJumped && !HasDoubleJumped && rb.velocity.y <= 0 && input.y > JumpThreshold)
-        {
             velo = new Vector2(input.x * Speed, JumpPower);
-        }
         else
-        {
             velo = new Vector2(input.x * Speed, rb.velocity.y);
-        }
     }
     void FixedUpdate()
     {

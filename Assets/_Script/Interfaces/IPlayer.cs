@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface IPlayer
 {
-    // Rigidbody PlayerRigidBody { get; set; }
-    void Clear();
     void Death();
 }

@@ -1,52 +1,15 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GoalBehaviour : MonoBehaviour
+public class GoalBehaviour : MonoBehaviour, ISlide
 {
-    private static GoalBehaviour instance;
-    public static GoalBehaviour Instance
+    public List<Vector3> PosHistory { get; set; } = new List<Vector3>();
+    void Awake()
     {
-        get
-        {
-            if (instance == null)
-            {
-                Type t = typeof(GoalBehaviour);
-
-                instance = (GoalBehaviour)FindObjectOfType(t);
-                if (instance == null)
-                {
-                    Debug.LogError(t + " をアタッチしているGameObjectはありません");
-                }
-            }
-
-            return instance;
-        }
-    }
-
-    virtual protected void Awake()
-    {
-        // 他のゲームオブジェクトにアタッチされているか調べる
-        // アタッチされている場合は破棄する。
-        CheckInstance();
-    }
-
-    protected bool CheckInstance()
-    {
-        if (instance == null)
-        {
-            instance = this as GoalBehaviour;
-            instance.SetParentByRay();
-            return true;
-        }
-        else if (Instance == this)
-        {
-            instance.SetParentByRay();
-            return true;
-        }
-        Destroy(this.gameObject);
-        return false;
+        PosHistory.Add(transform.position);
     }
     void OnTriggerEnter(Collider other)
     {
@@ -57,8 +20,18 @@ public class GoalBehaviour : MonoBehaviour
     {
         SceneManager.LoadScene("ClearUI", LoadSceneMode.Additive);
     }
-    void SetParentByRay()
+    public void Slide(Vector2 p0, Vector2 p1, bool PlayerSide, Vector3 SlideVec)
     {
-
+        PosHistory.Add(transform.position);
+        bool GoalSide = MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, transform.position.x, transform.position.y);
+        if (PlayerSide && !GoalSide)
+            transform.position += SlideVec;
+        else if (!PlayerSide && GoalSide)
+            transform.position += SlideVec;
+    }
+    public void Return()
+    {
+        transform.position = PosHistory.Last();
+        PosHistory.Remove(PosHistory.Last());
     }
 }

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7825915152593695412}
   - component: {fileID: 7825915152593695418}
   - component: {fileID: 7825915152593695415}
+  - component: {fileID: 1808527483818472028}
   - component: {fileID: 7825915152593695414}
   m_Layer: 0
   m_Name: Cut
@@ -46,7 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: fe9707cd3a2124e44ab4c8b81cd39838, type: 2}
-  SlideLength: 1
+  SlideLength: 1.5
   CanCutObjectTag: CanCutObject
   CutParent: {fileID: 1137733044418704594, guid: 0ea6a20a340c0cd4295c357e69720fb8,
     type: 3}
@@ -63,6 +64,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MinimamActivateLength: 50
+  SlashShakeStrength: 10
+  line: {fileID: 7825915152593695414}
+  target: {fileID: 11400000, guid: e68bd9b26e6ca744f9dcbb0e7a9919d5, type: 2}
+  JoyStick: {fileID: 0}
+  ReturnButton: {fileID: 0}
+  lineScroll: {fileID: 1808527483818472028}
+--- !u!114 &1808527483818472028
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825915152593695419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e6c54f9df8765d4bbbc089eb3efb8b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ScrollSpeed: 2
   line: {fileID: 7825915152593695414}
 --- !u!120 &7825915152593695414
 LineRenderer:
@@ -71,7 +91,7 @@ LineRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7825915152593695419}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -81,7 +101,7 @@ LineRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 080433200efd1a241be1e887932e024e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -106,7 +126,7 @@ LineRenderer:
   - {x: -1, y: -5, z: 1}
   m_Parameters:
     serializedVersion: 3
-    widthMultiplier: 0.05
+    widthMultiplier: 0.3
     widthCurve:
       serializedVersion: 2
       m_Curve:
@@ -154,7 +174,7 @@ LineRenderer:
     numCornerVertices: 0
     numCapVertices: 0
     alignment: 0
-    textureMode: 0
+    textureMode: 1
     shadowBias: 0.5
     generateLightingData: 0
   m_UseWorldSpace: 1
