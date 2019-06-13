@@ -9,7 +9,7 @@ public class Slasher : MonoBehaviour
     [SerializeField] RectTransform JoyStick, ReturnButton;
     [SerializeField] UVScroll4Line lineScroll;
     MeshCutManeger cutter;
-    Vector3 StartPos;
+    public Vector3 StartPos;
     TouchInfo info;
     bool CanSlash = false;
     void Start()
@@ -52,7 +52,7 @@ public class Slasher : MonoBehaviour
     {
         Vector3 s = Camera.main.ScreenToWorldPoint(StartPos);
         Vector3 e = Camera.main.ScreenToWorldPoint(AppUtil.GetTouchPosition());
-        target.target.GenerateImpulseAt(Vector3.zero, (e - s).normalized * SlashShakeStrength);
+        target.target?.GenerateImpulseAt(Vector3.zero, (e - s).normalized * SlashShakeStrength);
         yield return new WaitForEndOfFrame();
         cutter.Slash(new Vector3(s.x, s.y, 0), new Vector3(e.x, e.y, 0));
         line.enabled = false;

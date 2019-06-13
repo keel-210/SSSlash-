@@ -36,7 +36,7 @@ public class MeshCutManeger : MonoBehaviour
             OtherSide.transform.position += -dir * SlideLength;
         var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
         System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Slide(p0, p1, PlayerSide, -dir * SlideLength));
-        var CutObjs = GameObject.FindGameObjectsWithTag("CanCutObject");
+        var CutObjs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
         System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Slashed(p0, p1, PlayerSide, -dir * SlideLength));
     }
     public IList<CutRecord> CutAll(IList<MeshCollider> colliders, IList<MeshFilter> filters, Vector2 p0, Vector2 p1)
@@ -83,7 +83,7 @@ public class MeshCutManeger : MonoBehaviour
             CutHistory.RemoveAt(CutHistory.Count - 1);
             var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
             System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Return());
-            var CutObjs = GameObject.FindGameObjectsWithTag("CanCutObject");
+            var CutObjs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
             System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Return());
         }
     }
