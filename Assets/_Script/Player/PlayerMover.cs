@@ -34,7 +34,15 @@ public class PlayerMover : MonoBehaviour, IRecieveGravity
     }
     void OnCollisionEnter(Collision other)
     {
-        if (rb.velocity.y <= 0)
+        if (rb.velocity.y <= 0 && other.contacts[0].point.y < transform.position.y)
+        {
+            OnGround = true;
+            HasJumped = false;
+        }
+    }
+    void OnCollisionStay(Collision other)
+    {
+        if (rb.velocity.y <= 0 && other.contacts[0].point.y < transform.position.y)
         {
             OnGround = true;
             HasJumped = false;
