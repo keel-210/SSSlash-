@@ -15,6 +15,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void LoadScene()
     {
+        Debug.Log(gameObject.name + " : " + scene);
         if (!string.IsNullOrEmpty(scene))
             SceneManager.LoadScene(scene, LoadSceneMode.Single);
         foreach (string s in Additivescenes)

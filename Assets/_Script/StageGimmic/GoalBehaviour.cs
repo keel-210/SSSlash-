@@ -19,6 +19,7 @@ public class GoalBehaviour : MonoBehaviour, ISlide
     void Clear()
     {
         SceneManager.LoadScene("ClearUI", LoadSceneMode.Additive);
+        GameObject.FindGameObjectWithTag("Player").GetComponent<IClear>()?.Clear();
     }
     public void Slide(Vector2 p0, Vector2 p1, bool PlayerSide, Vector3 SlideVec)
     {

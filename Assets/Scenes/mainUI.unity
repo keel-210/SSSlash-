@@ -487,6 +487,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MeshCut2D
       objectReference: {fileID: 0}
+    - target: {fileID: 7825915152593695418, guid: 187fecd4da5659f44b2acec17d8d8707,
+        type: 3}
+      propertyPath: SlideLength
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 7825915152593695412, guid: 187fecd4da5659f44b2acec17d8d8707,
         type: 3}
       propertyPath: m_LocalPosition.x

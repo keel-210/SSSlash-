@@ -7,7 +7,7 @@ public class InitialPlayerPosition : MonoBehaviour
     [SerializeField] AccessTransform player;
     void Update()
     {
-        if (player)
+        if (player.target)
         {
             player.target.position = transform.position;
             Destroy(this);
