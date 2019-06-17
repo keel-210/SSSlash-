@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 7825915152593695418}
   - component: {fileID: 7825915152593695415}
   - component: {fileID: 1808527483818472028}
+  - component: {fileID: 104780423897640398}
   - component: {fileID: 7825915152593695414}
+  - component: {fileID: 598717893773717458}
   m_Layer: 0
   m_Name: Cut
   m_TagString: Untagged
@@ -47,7 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 11400000, guid: fe9707cd3a2124e44ab4c8b81cd39838, type: 2}
-  SlideLength: 1.5
+  SlideLength: 2
   CanCutObjectTag: CanCutObject
   CutParent: {fileID: 1137733044418704594, guid: 0ea6a20a340c0cd4295c357e69720fb8,
     type: 3}
@@ -67,9 +69,13 @@ MonoBehaviour:
   SlashShakeStrength: 10
   line: {fileID: 7825915152593695414}
   target: {fileID: 11400000, guid: e68bd9b26e6ca744f9dcbb0e7a9919d5, type: 2}
-  JoyStick: {fileID: 0}
-  ReturnButton: {fileID: 0}
+  UIRects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   lineScroll: {fileID: 1808527483818472028}
+  StartPos: {x: 0, y: 0, z: 0}
+  CanSlash: 0
 --- !u!114 &1808527483818472028
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -84,6 +90,34 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ScrollSpeed: 2
   line: {fileID: 7825915152593695414}
+--- !u!114 &104780423897640398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825915152593695419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36763db5eb83e5498d073ab63dbc186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: 79318512a8185024aae19b97032aa516, type: 2}
+        m_MethodName: set_target
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 7825915152593695415}
+          m_ObjectArgumentAssemblyTypeName: Slasher, Assembly-CSharp
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!120 &7825915152593695414
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -179,3 +213,31 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
+--- !u!114 &598717893773717458
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7825915152593695419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36763db5eb83e5498d073ab63dbc186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: 
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

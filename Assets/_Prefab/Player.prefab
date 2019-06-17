@@ -9,12 +9,15 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5133134220422109012}
-  - component: {fileID: 5133134220422109003}
-  - component: {fileID: 5133134220422109002}
   - component: {fileID: 1971856590}
   - component: {fileID: 1984850124}
-  - component: {fileID: 5133134221387858429}
+  - component: {fileID: 4647412540386688514}
   - component: {fileID: 8210603131275082688}
+  - component: {fileID: 5133134220422109003}
+  - component: {fileID: 5133134220422109002}
+  - component: {fileID: 5133134221387858429}
+  - component: {fileID: 5133134221387858430}
+  - component: {fileID: 1693844154552290525}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
@@ -36,6 +39,81 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1971856590
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133134220422109013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bde30fa50a6a4b4faa87f718f028a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JoyStick: {fileID: 11400000, guid: 7e43e07214bd5af4d91e676f4f183a5b, type: 2}
+  Speed: 6
+  JumpPower: 10
+  JumpThreshold: 0.5
+  OnGround: 0
+  HasJumped: 0
+  HasDoubleJumped: 1
+--- !u!114 &1984850124
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133134220422109013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d36763db5eb83e5498d073ab63dbc186, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onAwake:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 11400000, guid: fe9707cd3a2124e44ab4c8b81cd39838, type: 2}
+        m_MethodName: set_target
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 5133134220422109012}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &4647412540386688514
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133134220422109013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2a4f18c50c33ff47bd2d5a7b532cf77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  JoyStick: {fileID: 11400000, guid: 7e43e07214bd5af4d91e676f4f183a5b, type: 2}
+  mover: {fileID: 1971856590}
+  animator: {fileID: 1693844154552290525}
+  slasher: {fileID: 11400000, guid: 79318512a8185024aae19b97032aa516, type: 2}
+--- !u!114 &8210603131275082688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133134220422109013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a2e442137accfbf41a1fc4443019f140, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &5133134220422109003
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -99,55 +177,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 112
+  m_Constraints: 120
   m_CollisionDetection: 1
---- !u!114 &1971856590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5133134220422109013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7bde30fa50a6a4b4faa87f718f028a4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  JoyStick: {fileID: 11400000, guid: 7e43e07214bd5af4d91e676f4f183a5b, type: 2}
-  Speed: 3
-  JumpPower: 10
-  JumpThreshold: 0.5
-  OnGround: 0
-  HasJumped: 0
-  HasDoubleJumped: 1
---- !u!114 &1984850124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5133134220422109013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d36763db5eb83e5498d073ab63dbc186, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  onAwake:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 11400000, guid: fe9707cd3a2124e44ab4c8b81cd39838, type: 2}
-        m_MethodName: set_target
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 5133134220422109012}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Transform, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!135 &5133134221387858429
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -161,7 +192,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.6875
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8210603131275082688
+--- !u!114 &5133134221387858430
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -170,6 +201,29 @@ MonoBehaviour:
   m_GameObject: {fileID: 5133134220422109013}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a2e442137accfbf41a1fc4443019f140, type: 3}
+  m_Script: {fileID: 11500000, guid: b2a4f18c50c33ff47bd2d5a7b532cf77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  JoyStick: {fileID: 11400000, guid: 7e43e07214bd5af4d91e676f4f183a5b, type: 2}
+  mover: {fileID: 1971856590}
+  animator: {fileID: 1693844154552290525}
+  slasher: {fileID: 11400000, guid: 79318512a8185024aae19b97032aa516, type: 2}
+--- !u!95 &1693844154552290525
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5133134220422109013}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: f0bfa516fd2fad347b018b633ce84248, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

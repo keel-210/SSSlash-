@@ -9,7 +9,13 @@ public class PlayerController : MonoBehaviour, IPlayer, IClear
 	}
 	void OnBecameInvisible()
 	{
-		Death();
+		if (gameObject.activeInHierarchy)
+		{
+			StartCoroutine(this.DelayMethod(0.2f, () =>
+			{
+				Death();
+			}));
+		}
 	}
 	public void Death()
 	{

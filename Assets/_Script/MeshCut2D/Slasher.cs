@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Slasher : MonoBehaviour
@@ -6,12 +7,12 @@ public class Slasher : MonoBehaviour
     [SerializeField] float MinimamActivateLength, SlashShakeStrength;
     [SerializeField] LineRenderer line;
     [SerializeField] AccessCinemachineImpulseSource target;
-    [SerializeField] RectTransform JoyStick, ReturnButton;
+    [SerializeField] List<RectTransform> UIRects = new List<RectTransform>();
     [SerializeField] UVScroll4Line lineScroll;
     MeshCutManeger cutter;
     public Vector3 StartPos;
     TouchInfo info;
-    bool CanSlash = false;
+    public bool CanSlash = false;
     void Start()
     {
         cutter = FindObjectOfType<MeshCutManeger>();
@@ -24,10 +25,13 @@ public class Slasher : MonoBehaviour
             StartPos = AppUtil.GetTouchPosition();
         if (info == TouchInfo.Moved)
         {
-            bool OnJoyStick = JoyStick.rect.Contains(JoyStick.InverseTransformPoint(StartPos));
-            bool OnButton = ReturnButton.rect.Contains(ReturnButton.InverseTransformPoint(StartPos));
+            bool OnUIRect = false;
+            foreach (RectTransform r in UIRects)
+            {
+                OnUIRect = OnUIRect || ContainPointInRect(r, StartPos);
+            }
             bool t = Vector3.Distance(StartPos, AppUtil.GetTouchPosition()) > MinimamActivateLength;
-            if (!OnJoyStick && !OnButton && t)
+            if (!OnUIRect && t)
             {
                 line.enabled = true;
                 lineScroll.enabled = true;
@@ -57,5 +61,9 @@ public class Slasher : MonoBehaviour
         cutter.Slash(new Vector3(s.x, s.y, 0), new Vector3(e.x, e.y, 0));
         line.enabled = false;
         lineScroll.enabled = false;
+    }
+    bool ContainPointInRect(RectTransform rect, Vector3 pos)
+    {
+        return rect.rect.Contains(rect.InverseTransformPoint(pos));
     }
 }
