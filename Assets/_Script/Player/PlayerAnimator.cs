@@ -8,6 +8,7 @@ public class PlayerAnimator : MonoBehaviour
     [SerializeField] PlayerMover mover;
     [SerializeField] Animator animator;
     [SerializeField] AccessSlasher slasher;
+    [SerializeField] GameObject walkParticle0, walkParticle1;
     public Rigidbody rb { get; set; }
 
     void Start()

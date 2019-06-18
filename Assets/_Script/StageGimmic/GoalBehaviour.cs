@@ -25,6 +25,7 @@ public class GoalBehaviour : MonoBehaviour, ISlide
     {
         PosHistory.Add(transform.position);
         bool GoalSide = MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, transform.position.x, transform.position.y);
+        Debug.Log(PlayerSide.ToString() + GoalSide.ToString());
         if (PlayerSide && !GoalSide)
             transform.position += SlideVec;
         else if (!PlayerSide && GoalSide)

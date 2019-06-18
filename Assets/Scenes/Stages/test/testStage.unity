@@ -132,6 +132,7 @@ GameObject:
   - component: {fileID: 23201483}
   - component: {fileID: 23201482}
   - component: {fileID: 23201481}
+  - component: {fileID: 23201484}
   m_Layer: 0
   m_Name: Wall_R
   m_TagString: CanCutObject
@@ -212,6 +213,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 23201479}
   m_Mesh: {fileID: 9127120572191758296, guid: 798fc554cb0773d48a5c50619cc403ff, type: 3}
+--- !u!114 &23201484
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 23201479}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69de9c5c4bebb4e89d364cea4901ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Default
+  orderInLayer: 0
 --- !u!1 &113572197
 GameObject:
   m_ObjectHideFlags: 0
@@ -352,6 +367,7 @@ GameObject:
   - component: {fileID: 273983867}
   - component: {fileID: 273983866}
   - component: {fileID: 273983865}
+  - component: {fileID: 273983868}
   m_Layer: 0
   m_Name: Quad
   m_TagString: CanCutObject
@@ -432,6 +448,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 273983863}
   m_Mesh: {fileID: 9127120572191758296, guid: 798fc554cb0773d48a5c50619cc403ff, type: 3}
+--- !u!114 &273983868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273983863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69de9c5c4bebb4e89d364cea4901ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Default
+  orderInLayer: 0
 --- !u!1 &311213559
 GameObject:
   m_ObjectHideFlags: 0
@@ -444,6 +474,7 @@ GameObject:
   - component: {fileID: 311213563}
   - component: {fileID: 311213562}
   - component: {fileID: 311213561}
+  - component: {fileID: 311213564}
   m_Layer: 0
   m_Name: Ground (1)
   m_TagString: CanCutObject
@@ -524,6 +555,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 311213559}
   m_Mesh: {fileID: 9127120572191758296, guid: 798fc554cb0773d48a5c50619cc403ff, type: 3}
+--- !u!114 &311213564
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311213559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69de9c5c4bebb4e89d364cea4901ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Default
+  orderInLayer: 0
 --- !u!60 &445414093 stripped
 PolygonCollider2D:
   m_CorrespondingSourceObject: {fileID: 533617990910288881, guid: 5ec6ebac96046d1459b37200d555a01d,
@@ -694,6 +739,7 @@ GameObject:
   - component: {fileID: 805631951}
   - component: {fileID: 805631950}
   - component: {fileID: 805631949}
+  - component: {fileID: 805631952}
   m_Layer: 0
   m_Name: Wall_L
   m_TagString: CanCutObject
@@ -774,6 +820,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 805631947}
   m_Mesh: {fileID: 9127120572191758296, guid: 798fc554cb0773d48a5c50619cc403ff, type: 3}
+--- !u!114 &805631952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805631947}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69de9c5c4bebb4e89d364cea4901ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Default
+  orderInLayer: 0
 --- !u!1 &1866156912
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,6 +846,7 @@ GameObject:
   - component: {fileID: 1866156916}
   - component: {fileID: 1866156915}
   - component: {fileID: 1866156914}
+  - component: {fileID: 1866156917}
   m_Layer: 0
   m_Name: Ground
   m_TagString: CanCutObject
@@ -866,6 +927,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1866156912}
   m_Mesh: {fileID: 9127120572191758296, guid: 798fc554cb0773d48a5c50619cc403ff, type: 3}
+--- !u!114 &1866156917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1866156912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a69de9c5c4bebb4e89d364cea4901ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Default
+  orderInLayer: 0
 --- !u!1001 &533617991069948220
 PrefabInstance:
   m_ObjectHideFlags: 0
