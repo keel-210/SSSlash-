@@ -38,6 +38,18 @@ TextureImporter:
   - first:
       213: 2157959383235733917
     second: rindou_11
+  - first:
+      213: -6116525320998049756
+    second: rindou_12
+  - first:
+      213: 1013875319794466314
+    second: rindou_13
+  - first:
+      213: -1408631462949462953
+    second: rindou_14
+  - first:
+      213: 460914252167087740
+    second: rindou_15
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -146,7 +158,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -156,7 +168,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c41012ab6d84c5948a15124d9f44ebdc
+      spriteID: d683513d95783d142b0c1ebf4a4f414d
       internalID: -9171442061284789241
       vertices: []
       indices: 
@@ -167,7 +179,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -177,7 +189,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a1934c8911bec6047899453c3cca326c
+      spriteID: 88ca4ccb9ed24b0448ba80e713eb1687
       internalID: 7204209530968323099
       vertices: []
       indices: 
@@ -188,7 +200,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -198,7 +210,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d51dc0447d07acb4e8c6141a0d297de2
+      spriteID: 86f91a729a46988418837ae7f6bd65e3
       internalID: 2937424433614233321
       vertices: []
       indices: 
@@ -209,7 +221,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 96
-        y: 64
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -219,7 +231,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ca63d9a0f48de4b4fb47ebc06793af47
+      spriteID: 6f17b4e0bc92e2b4895e2b2d280a1532
       internalID: -399970138659749696
       vertices: []
       indices: 
@@ -230,6 +242,90 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3776c5f8b0a85745b14d536b5d1bd4b
+      internalID: 513114322361206431
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rindou_5
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 75f7f99589e70f6418167c77523bfebb
+      internalID: 613980579277038910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rindou_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7543e07adfd558d4a804ff5ddb7759a6
+      internalID: -3336561640237523187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rindou_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9a4fc62cd3534459d495ca60a43084
+      internalID: 7008760626795186421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: rindou_8
+      rect:
+        serializedVersion: 2
+        x: 0
         y: 32
         width: 32
         height: 32
@@ -240,14 +336,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54c6858082297d34695fae761440f331
-      internalID: 513114322361206431
+      spriteID: 74e79ba580d82574693e53180f07c5b7
+      internalID: -8137491995301920831
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_5
+      name: rindou_9
       rect:
         serializedVersion: 2
         x: 32
@@ -261,14 +357,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 37c4ccbb0a08fc645aefed46c55e0c24
-      internalID: 613980579277038910
+      spriteID: 97677a800dcdf9c49bf3ef346c3c1f5e
+      internalID: -8212161757808756962
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_6
+      name: rindou_10
       rect:
         serializedVersion: 2
         x: 64
@@ -282,14 +378,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e95b6117d79637e419aa88bcce36a990
-      internalID: -3336561640237523187
+      spriteID: 762d4aa1cf3828e4abd47b3de59cac5e
+      internalID: -6929534301554147671
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_7
+      name: rindou_11
       rect:
         serializedVersion: 2
         x: 96
@@ -303,14 +399,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e79e171d015b54f4cbfbb0d78814fc37
-      internalID: 7008760626795186421
+      spriteID: 453b648008f39134894c44b7fb22e8c6
+      internalID: 2157959383235733917
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_8
+      name: rindou_12
       rect:
         serializedVersion: 2
         x: 0
@@ -324,14 +420,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 54d0f45fc391c6646ae4b101c93eece6
-      internalID: -8137491995301920831
+      spriteID: 1e1b80434d3802245940f821a48b69f4
+      internalID: -6116525320998049756
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_9
+      name: rindou_13
       rect:
         serializedVersion: 2
         x: 32
@@ -345,14 +441,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9eb16282bcf41b4499e711e60ae94224
-      internalID: -8212161757808756962
+      spriteID: 9f376ebe7f60f4e4c8830bf9505e3fb4
+      internalID: 1013875319794466314
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_10
+      name: rindou_14
       rect:
         serializedVersion: 2
         x: 64
@@ -366,14 +462,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e14c9e9af8086e443be299b4f1d5ef6e
-      internalID: -6929534301554147671
+      spriteID: da16a87e4183aa745901a4d59d575b79
+      internalID: -1408631462949462953
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: rindou_11
+      name: rindou_15
       rect:
         serializedVersion: 2
         x: 96
@@ -387,8 +483,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 008c681c386dfca42b5113e056677cc6
-      internalID: 2157959383235733917
+      spriteID: ffb00fafa0ed5ac41941c681bb40e3e9
+      internalID: 460914252167087740
       vertices: []
       indices: 
       edges: []
