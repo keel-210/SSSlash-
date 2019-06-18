@@ -78,11 +78,18 @@ public class MeshCutManeger : MonoBehaviour
     {
         if (CutHistory.Count() > 0)
         {
+            Vector2 p0 = Vector2.zero, p1 = Vector2.zero;
             foreach (CutRecord r in CutHistory[CutHistory.Count - 1])
+            {
                 ReturnObj(r);
+                p0 = r.p0;
+                p1 = r.p1;
+            }
+            Vector3 PlayerPos = player.target.position;
+            bool PlayerSide = MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y);
             CutHistory.RemoveAt(CutHistory.Count - 1);
             var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
-            System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Return());
+            System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Return(p0, p1, PlayerSide));
             var CutObjs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
             System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Return());
         }
