@@ -5,6 +5,7 @@ using UnityEngine;
 public interface IBoss
 {
     int Health { get; set; }
+    bool IsDamasable { get; set; }
     void Damage();
     void Clear();
 }

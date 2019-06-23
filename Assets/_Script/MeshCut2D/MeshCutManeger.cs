@@ -6,14 +6,13 @@ public class MeshCutManeger : MonoBehaviour
 {
     [SerializeField] AccessTransform player;
     [SerializeField] float SlideLength;
-    [SerializeField] string CanCutObjectTag;
     [SerializeField] GameObject CutParent;
     public MeshCut2D cutter = new MeshCut2D();
     MeshCutResult a = new MeshCutResult(), b = new MeshCutResult();
     List<List<CutRecord>> CutHistory = new List<List<CutRecord>>();
     public void Slash(Vector2 p0, Vector2 p1)
     {
-        var objs = GameObject.FindGameObjectsWithTag(CanCutObjectTag).Where(x => x.GetComponent<Renderer>().isVisible);
+        var objs = GameObject.FindGameObjectsWithTag(TagName.CanCutObject).Where(x => x.GetComponent<Renderer>().isVisible);
         List<MeshCollider> cols = objs.Select(x => x.GetComponent<MeshCollider>()).ToList();
         List<MeshFilter> filters = objs.Select(x => x.GetComponent<MeshFilter>()).ToList();
         CutAll(cols, filters, p0, p1);
@@ -34,9 +33,9 @@ public class MeshCutManeger : MonoBehaviour
             OneSide.transform.position += -dir * SlideLength;
         else
             OtherSide.transform.position += -dir * SlideLength;
-        var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
+        var SlideObjs = GameObject.FindGameObjectsWithTag(TagName.SlideObject);
         System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Slide(p0, p1, PlayerSide, -dir * SlideLength));
-        var CutObjs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
+        var CutObjs = GameObject.FindGameObjectsWithTag(TagName.CanCutObject);
         System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Slashed(p0, p1, PlayerSide, -dir * SlideLength));
     }
     public IList<CutRecord> CutAll(IList<MeshCollider> colliders, IList<MeshFilter> filters, Vector2 p0, Vector2 p1)
@@ -88,11 +87,17 @@ public class MeshCutManeger : MonoBehaviour
             Vector3 PlayerPos = player.target.position;
             bool PlayerSide = MeshCut2D.IsClockWise(p0.x, p0.y, p1.x, p1.y, PlayerPos.x, PlayerPos.y);
             CutHistory.RemoveAt(CutHistory.Count - 1);
-            var SlideObjs = GameObject.FindGameObjectsWithTag("SlideObject");
+            var SlideObjs = GameObject.FindGameObjectsWithTag(TagName.SlideObject);
             System.Array.ForEach(SlideObjs, obj => obj.GetComponent<ISlide>()?.Return(p0, p1, PlayerSide));
-            var CutObjs = GameObject.FindGameObjectsWithTag(CanCutObjectTag);
+            var CutObjs = GameObject.FindGameObjectsWithTag(TagName.CanCutObject);
             System.Array.ForEach(CutObjs, obj => obj.GetComponent<ISlash>()?.Return());
         }
+    }
+    public void ReturnAll()
+    {
+        int HistoryLength = CutHistory.Count();
+        for (int i = 0; i < HistoryLength; i++)
+            Return();
     }
     void ReturnObj(CutRecord r)
     {

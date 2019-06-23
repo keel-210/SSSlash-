@@ -4,8 +4,5 @@ using UnityEngine;
 
 public class DeathZone : MonoBehaviour
 {
-    void OnTriggerEnter(Collider other)
-    {
-        other.GetComponent<IPlayer>()?.Death();
-    }
+    void OnTriggerEnter(Collider other) => other.GetComponent<IPlayer>()?.Death();
 }
