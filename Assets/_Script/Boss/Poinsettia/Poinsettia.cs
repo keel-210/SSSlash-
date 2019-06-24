@@ -3,6 +3,8 @@ using System.Linq;
 using UnityEngine;
 public class Poinsettia : MonoBehaviour, IBoss, ISlide
 {
+	public int Health { get; set; }
+	public bool IsDamasable { get; set; }
 	public List<Vector3> PosHistory { get; set; } = new List<Vector3>();
 	public void Slide(Vector2 p0, Vector2 p1, bool PlayerSide, Vector3 SlideVec)
 	{
@@ -22,8 +24,6 @@ public class Poinsettia : MonoBehaviour, IBoss, ISlide
 			transform.position = PosHistory.Last();
 		PosHistory.Remove(PosHistory.Last());
 	}
-	public int Health { get; set; }
-	public bool IsDamasable { get; set; }
 	public void Damage()
 	{
 		if (IsDamasable)

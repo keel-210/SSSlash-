@@ -22,6 +22,12 @@ public class PoinsettiaAnimator : MonoBehaviour, IBossAnimator
         animator.CrossFadeInFixedTime(AnimatorParameter.Poinsettia_Anim.Base_Layer_Idle, 0);
     }
     void Update()
-    {}
+    {
+
+    }
+    public void Stan()
+    {
+
+    }
     public void HealthUpdate() {}
 }
