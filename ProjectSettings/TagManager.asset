@@ -9,6 +9,7 @@ TagManager:
   - SlideObject
   - Ground
   - Fire
+  - BossSettings
   layers:
   - Default
   - TransparentFX

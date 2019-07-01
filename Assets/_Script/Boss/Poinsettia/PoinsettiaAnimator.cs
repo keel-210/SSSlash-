@@ -11,23 +11,35 @@ public class PoinsettiaAnimator : MonoBehaviour, IBossAnimator
 
     [SerializeField] public IBoss boss { get; set; }
 
-    [SerializeField] public Rigidbody rb { get; set; }
-    public PoinsettiaState state;
+    [SerializeField] PoinsettiaMover mover;
+    AnimatorParameter.Poinsettia_Anim p;
+    public int state, prevState;
     void Start()
     {
         player = _player;
         animator = GetComponent<Animator>();
         boss = GetComponent<IBoss>();
-        rb = GetComponent<Rigidbody>();
-        animator.CrossFadeInFixedTime(AnimatorParameter.Poinsettia_Anim.Base_Layer_Idle, 0);
     }
     void Update()
     {
-
+        AnimatorStateInfo info = animator.GetCurrentAnimatorStateInfo(0);
+        state = info.fullPathHash;
+        if (state != prevState)
+            mover.UpdateState();
+        prevState = info.fullPathHash;
     }
     public void Stan()
     {
-
+        p.IsDamagable = true;
     }
-    public void HealthUpdate() {}
+    public void HealthUpdate()
+    {
+        p.Damaged = true;
+        p.Health = boss.Health;
+    }
+    public void ResetParameter()
+    {
+        p.IsDamagable = false;
+        p.Damaged = false;
+    }
 }

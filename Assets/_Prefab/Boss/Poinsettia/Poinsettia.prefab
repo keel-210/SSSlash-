@@ -20,7 +20,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3619035260760729723
 Transform:
   m_ObjectHideFlags: 0
@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca47233d3049c8547a46edad3802b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anim: {fileID: 6209127926224267732}
+  mover: {fileID: 4420201009048268582}
+  rb: {fileID: 3619035260760729722}
 --- !u!114 &6209127926224267732
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -61,8 +64,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _player: {fileID: 11400000, guid: fe9707cd3a2124e44ab4c8b81cd39838, type: 2}
-  state: 0
   mover: {fileID: 4420201009048268582}
+  state: 0
+  prevState: 0
 --- !u!114 &4420201009048268582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -75,13 +79,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 23f6f325280c6e64384987fd4833e27d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 7339358256844323490}
-  state: 0
+  anim: {fileID: 0}
   rb: {fileID: 3619035260760729722}
   StageLeft: {fileID: 11400000, guid: 9def810458f7c9b49b47fc74a5ef7450, type: 2}
   StageRight: {fileID: 11400000, guid: 1e9961bae1abdb9439f0cb2a4e1e090c, type: 2}
   StageLeftUp: {fileID: 11400000, guid: dcb16dce28a855745830c78f3682dff8, type: 2}
   StageRightUp: {fileID: 11400000, guid: 171f13846c118c54387ab5baf379b2bf, type: 2}
+  PoinsettiaShot: {fileID: 0}
+  PoinsettiaSummon: {fileID: 0}
+  IsStan: 0
 --- !u!135 &3619035260760729721
 SphereCollider:
   m_ObjectHideFlags: 0

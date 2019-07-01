@@ -15,4 +15,5 @@ public static class TagName
 	public const string SlideObject = "SlideObject";
 	public const string Ground = "Ground";
 	public const string Fire = "Fire";
+	public const string BossSettings = "BossSettings";
 }

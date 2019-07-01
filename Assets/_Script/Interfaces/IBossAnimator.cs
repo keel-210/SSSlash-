@@ -6,6 +6,5 @@ public interface IBossAnimator
 
 	AccessTransform player { get; set; }
 	IBoss boss { get; set; }
-	Rigidbody rb { get; set; }
 	void HealthUpdate();
 }
