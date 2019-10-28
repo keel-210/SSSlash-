@@ -13,11 +13,12 @@ public class PoinsettiaAnimator : MonoBehaviour, IBossAnimator
 
     [SerializeField] PoinsettiaMover mover;
     AnimatorParameter.Poinsettia_Anim p;
+    PoinsettiaState AnimState;
     public int state, prevState;
     void Start()
     {
         player = _player;
-        animator = GetComponent<Animator>();
+        animator = GetComponentInChildren<Animator>();
         boss = GetComponent<IBoss>();
     }
     void Update()

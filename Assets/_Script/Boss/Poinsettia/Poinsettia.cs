@@ -9,6 +9,10 @@ public class Poinsettia : MonoBehaviour, IBoss, ISlide
 	public PoinsettiaAnimator anim;
 	public PoinsettiaMover mover;
 	public Rigidbody rb;
+	void Start()
+	{
+		Health = 3;
+	}
 	public void Slide(Vector2 p0, Vector2 p1, bool PlayerSide, Vector3 SlideVec)
 	{
 		PosHistory.Add(transform.position);
