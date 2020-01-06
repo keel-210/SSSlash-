@@ -58,45 +58,19 @@ Shader "Custom/9 Slice Mesh"
 			{
 				float scaleX = length(float3(unity_ObjectToWorld[0].x, unity_ObjectToWorld[1].x, unity_ObjectToWorld[2].x));
 				float scaleY = length(float3(unity_ObjectToWorld[0].y, unity_ObjectToWorld[1].y, unity_ObjectToWorld[2].y));
-				// float scaleZ = length(float3(unity_ObjectToWorld[0].z, unity_ObjectToWorld[1].z, unity_ObjectToWorld[2].z));
 				fixed2 halfScale = fixed2(scaleX/2,scaleY/2);
 				float3 l = i.localPos;
-				fixed2 uv = fixed2(0,0);
 
-				fixed xStep = step(l.x,halfScale.x-_Slice.x*_TileScale);
-				fixed yStep = step(l.y,halfScale.y-_Slice.z*_TileScale);
-				
-				if(halfScale.x-_Slice.x*_TileScale<l.x)
-				{
-					fixed t = halfScale.x-_Slice.x*_TileScale;
-					uv.x = (_Slice.x-(l.x-t)/_TileScale);
-				}
-				else if(l.x < -halfScale.x+(1-_Slice.y)*_TileScale)
-				{
-					fixed t = -halfScale.x+(1-_Slice.y)*_TileScale;
-					uv.x = _Slice.y + (-l.x+t)/_TileScale;
-				}
-				else
-				{
-					fixed t = (_Slice.y-_Slice.x)*_TileScale;
-					uv.x = _Slice.y-fmod(l.x+halfScale.x,t)/_TileScale;
-				}
+				fixed3 xScale = fixed3(halfScale.x-_Slice.x*_TileScale,-halfScale.x+(1-_Slice.y)*_TileScale,(_Slice.y-_Slice.x)*_TileScale);
+				fixed3 yScale = fixed3(halfScale.y-_Slice.z*_TileScale,-halfScale.y+(1-_Slice.w)*_TileScale,(_Slice.w-_Slice.z)*_TileScale);
 
-				if(halfScale.y-_Slice.z*_TileScale < l.y)
-				{
-					fixed t = halfScale.y-_Slice.z*_TileScale;
-					uv.y = (_Slice.z-(l.y-t)/_TileScale);
-				}
-				else if(-halfScale.y+(1-_Slice.w)*_TileScale > l.y)
-				{
-					fixed t = -halfScale.y+(1-_Slice.w)*_TileScale;
-					uv.y = _Slice.w + (-l.y+t)/_TileScale;
-				}
-				else
-				{
-					fixed t = (_Slice.w-_Slice.z)*_TileScale;
-					uv.y = _Slice.w-fmod(l.y+halfScale.y,t)/_TileScale;
-				}
+				fixed xStep = step(xScale.x,l.x)*(_Slice.x-(l.x-xScale.x)/_TileScale)
+								+((1-step(xScale.x,l.x))+(1-step(l.x,xScale.y))-1)*(_Slice.y-fmod(l.x+halfScale.x,xScale.z)/_TileScale)
+								+step(l.x,xScale.y)*(_Slice.y + (-l.x+xScale.y)/_TileScale);
+				fixed yStep = step(yScale.x,l.y)*(_Slice.z-(l.y-yScale.x)/_TileScale)
+								+((1-step(yScale.x,l.y))+(1-step(l.y,yScale.y))-1)*(_Slice.w-fmod(l.y+halfScale.y,yScale.z)/_TileScale)
+								+step(l.y,yScale.y)*(_Slice.w + (-l.y+yScale.y)/_TileScale);
+				fixed2 uv = fixed2(xStep,yStep);
 				
 				fixed4 c =fixed4(0,0,0,0);
 				if(i.normal.x == 0 && i.normal.y == 0)
